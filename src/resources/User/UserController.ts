@@ -30,7 +30,7 @@ class UserController {
 
   async updateUser(req: Request, res: Response): Promise<Response> {
     try {
-      const { id } = req.user;
+      const { id } = req.params;
       const user = req.body;
       const newUser = await UserService.updateUser(id, user);
       return res.status(200).send(newUser);

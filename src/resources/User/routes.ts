@@ -5,7 +5,7 @@ import UserController from './UserController';
 const routes = Router();
 
 routes.post('/user/create', UserController.createUser);
-routes.post('/user/update', authMiddleware, UserController.updateUser);
+routes.post('/user/update/:id', authMiddleware, UserController.updateUser);
 routes.delete('/user/delete', authMiddleware, UserController.deleteUser);
 routes.get('/user/my', authMiddleware, UserController.userIndex);
 routes.get('/user/find/:id', UserController.getUserById);
