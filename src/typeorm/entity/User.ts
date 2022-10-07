@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { AfterLoad, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { subHours } from 'date-fns';
 
 export enum Gender {
   M = 'M',
@@ -37,4 +38,10 @@ export class Users {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @AfterLoad()
+  afterLoad() { //Used to remove time difference from the database
+    this.createdAt = !this.createdAt ? undefined : subHours(this.createdAt, 3);
+    this.updatedAt = !this.updatedAt ? undefined : subHours(this.updatedAt, 3);
+  }
 }

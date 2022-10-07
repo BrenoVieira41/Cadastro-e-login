@@ -10,4 +10,3 @@ const appPort = process.env.APP_PORT;
 AppDataSource.initialize().then(() => {
   app.listen(appPort, () => console.log(`Server is running in port:${appPort}`));
 });
-

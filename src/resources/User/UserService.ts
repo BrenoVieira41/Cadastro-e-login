@@ -19,7 +19,8 @@ class UserService {
       user.email = user.email.toLowerCase();
       await this.noRepeat(user);
 
-      return this.userRepository.createUser(user);
+      const newUser = await this.userRepository.createUser(user);
+      return this.userRepository.getUserById(newUser.id);
     } catch (err) {
       throw new Error(err.message);
     }
